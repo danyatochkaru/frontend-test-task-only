@@ -1,0 +1,26 @@
+.wrapper {
+  .title {
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 1.2;
+    width: min-content;
+    margin-left: 5rem;
+    position: relative;
+    margin-bottom: -10rem;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 5px;
+      position: absolute;
+      height: 100%;
+      left: -5rem;
+      background: linear-gradient(to bottom, var(--accent) 0%, var(--secondary) 100%);
+      margin-bottom: 1rem;
+    }
+  }
+
+  .switcher {
+    margin-top: -2.5rem;
+  }
+}

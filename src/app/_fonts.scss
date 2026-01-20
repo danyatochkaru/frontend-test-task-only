@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'Bebas Neue';
+  src: local('Bebas Neue'), url('./fonts/Bebas Neue.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PT Sans'), url('./fonts/pt-sans_regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: normal;
+  src: local('PT Sans'), url('./fonts/pt-sans_italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: bold;
+  src: local('PT Sans'), url('./fonts/pt-sans_bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: bold;
+  src: local('PT Sans'), url('./fonts/pt-sans_bold-italic.ttf') format('truetype');
+}
+
