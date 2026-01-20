@@ -24,22 +24,22 @@ const HomePage = (props: HomePageProps) => {
 		to: props.data[currentTopicIndex].yearTo,
 	}), [currentTopicIndex, props.data])
 
-	const changeTopic = useCallback((dirOrIndex: 'next' | 'prev' | number) => {
+	const changeTopic = useCallback((navigationAction: 'next' | 'prev' | number) => {
 		gsap.fromTo(carouselRef.current, {
 			opacity: 1,
 		}, {
 			duration: 0.3,
 			opacity: 0,
 			onComplete: () => {
-				if (typeof dirOrIndex === 'string') {
-					if (dirOrIndex === 'prev') {
+				if (typeof navigationAction === 'string') {
+					if (navigationAction === 'prev') {
 						changeTopicIndex(currentTopicIndex > 0 ? currentTopicIndex - 1 : currentTopicIndex)
 					}
-					if (dirOrIndex === 'next') {
+					if (navigationAction === 'next') {
 						changeTopicIndex(currentTopicIndex < props.data.length - 1 ? currentTopicIndex + 1 : currentTopicIndex)
 					}
 				} else {
-					changeTopicIndex(dirOrIndex)
+					changeTopicIndex(navigationAction)
 				}
 			}
 		})
@@ -59,9 +59,26 @@ const HomePage = (props: HomePageProps) => {
 		}
 	}, [currentTopicIndex]);
 
+	const events = useMemo(() => props.data[currentTopicIndex].events.map((event) => (
+		<Event
+			key={ event.id }
+			title={ event.title }
+			year={ event.year }
+		/>
+	)), [currentTopicIndex, props.data])
+
+	const switcherDots = useMemo(() => props.data.map((item, index) => (
+		<button
+			key={ item.id }
+			className={ s.switcher_dot }
+			data-active={ index === currentTopicIndex }
+			onClick={ () => changeTopic(index) }
+		/>
+	)), [changeTopic, currentTopicIndex, props.data])
+
 	return (
 		<div className={ `container ${ s.wrapper }` }>
-			<h1 className={ s.title }>{ 'Исторические даты' }</h1>
+			<h1 className={ s.title }>Исторические даты</h1>
 			<DatesWheel
 				list={ props.data }
 				yearFrom={ years.from }
@@ -77,18 +94,8 @@ const HomePage = (props: HomePageProps) => {
 				/>
 			</div>
 			<div ref={ carouselRef }>
-				<div>
-					<h2 className={ s.eventTitle }>{ props.data[currentTopicIndex].title }</h2>
-				</div>
-				<Carousel
-					items={ props.data[currentTopicIndex].events.map((i) => (
-						<Event
-							key={ i.id }
-							title={ i.title }
-							year={ i.year }
-						/>
-					)) }
-				/>
+				<h2 className={ s.eventTitle }>{ props.data[currentTopicIndex].title }</h2>
+				<Carousel items={ events }/>
 			</div>
 			<div className={ s.switcher_mobile }>
 				<Switcher
@@ -98,14 +105,7 @@ const HomePage = (props: HomePageProps) => {
 					onNext={ () => changeTopic('next') }
 				/>
 				<div className={ s.switcher_dots }>
-					{ props.data.map((item, i) => (
-						<button
-							key={ item.id }
-							className={ s.switcher_dot }
-							data-active={ i === currentTopicIndex }
-							onClick={ () => changeTopic(i) }
-						/>
-					)) }
+					{ switcherDots }
 				</div>
 			</div>
 		</div>
