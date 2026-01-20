@@ -29,12 +29,18 @@ const Carousel = (props: Props) => {
 			<Swiper
 				key={ key }
 				modules={ [Navigation] }
-				spaceBetween={ 80 }
-				slidesPerView={ 3 }
-				navigation={ {
+				spaceBetween={ 0 }
+				slidesPerView={ 1.5 }
+				navigation={{
 					nextEl: '.carousel-button-next',
 					prevEl: '.carousel-button-prev',
 					disabledClass: 'carousel-button-disabled',
+				}}
+				breakpoints={ {
+					1440: {
+						spaceBetween: 80,
+						slidesPerView: 3,
+					}
 				} }
 			>
 				{ items.map((item, index) => (

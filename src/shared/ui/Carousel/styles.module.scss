@@ -1,9 +1,14 @@
 .wrapper {
   position: relative;
-  width: calc(100% - 3rem);
+  width: calc(100% - 48px);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 16px;
   user-select: none;
-  margin-inline: 1.5rem;
+  margin-inline: 24px;
+
+  @media (max-width: 1439px) {
+    width: 100%;
+    margin-inline: 0;
+  }
 }

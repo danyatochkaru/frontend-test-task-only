@@ -77,6 +77,9 @@ const HomePage = (props: HomePageProps) => {
 				/>
 			</div>
 			<div ref={ carouselRef }>
+				<div>
+					<h2 className={ s.eventTitle }>{ props.data[currentTopicIndex].title }</h2>
+				</div>
 				<Carousel
 					items={ props.data[currentTopicIndex].events.map((i) => (
 						<Event
@@ -86,6 +89,24 @@ const HomePage = (props: HomePageProps) => {
 						/>
 					)) }
 				/>
+			</div>
+			<div className={ s.switcher_mobile }>
+				<Switcher
+					currentIndex={ currentTopicIndex }
+					totalItems={ props.data.length }
+					onPrev={ () => changeTopic('prev') }
+					onNext={ () => changeTopic('next') }
+				/>
+				<div className={ s.switcher_dots }>
+					{ props.data.map((item, i) => (
+						<button
+							key={ item.id }
+							className={ s.switcher_dot }
+							data-active={ i === currentTopicIndex }
+							onClick={ () => changeTopic(i) }
+						/>
+					)) }
+				</div>
 			</div>
 		</div>
 	);

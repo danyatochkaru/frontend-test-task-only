@@ -13,7 +13,9 @@ const DatesWheel = (props: RoundProps) => {
 				<RollingNumber value={ props.yearFrom } from={ 2000 }/>
 				<RollingNumber value={ props.yearTo } from={ 2000 }/>
 			</div>
-			<Wheel list={ props.list } onChange={ props.onChange }/>
+			<div className={ s.wheel }>
+				<Wheel list={ props.list } onChange={ props.onChange }/>
+			</div>
 		</div>
 	);
 };

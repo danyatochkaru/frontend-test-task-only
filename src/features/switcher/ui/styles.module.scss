@@ -1,8 +1,8 @@
 .wrapper {
-  margin-left: 5rem;
+  margin-left: 80px;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 20px;
 
   .info {
     font-size: 14px;
@@ -10,14 +10,13 @@
 
   .buttons {
     display: flex;
-    gap: 1.25rem;
+    gap: 20px;
     align-items: center;
-
 
     .button {
       cursor: pointer;
-      width: 3rem;
-      height: 3rem;
+      width: 48px;
+      height: 48px;
       border-radius: 100%;
       background-color: var(--background);
       border: 1px solid var(--foreground);
@@ -31,6 +30,29 @@
         cursor: default;
         opacity: 50%;
       }
+
+      @media (max-width: 1439px) {
+        width: 26px;
+        height: 26px;
+
+        svg {
+          width: 6px;
+          height: 6px;
+
+          > * {
+            stroke-width: 3;
+          }
+        }
+      }
     }
+
+    @media (max-width: 1439px) {
+        gap: 8px;
+    }
+  }
+
+  @media (max-width: 1439px) {
+    gap: 10px;
+    margin-left: 20px;
   }
 }
